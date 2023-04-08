@@ -9,9 +9,8 @@ import io
 import os
 import streamlit as st
 
-st.title(""" Find any information you're looking for in your PDF""")
+st.title("""Find any information you're looking for in your PDF""")
 openai_api_key = os.environ["OPENAI_API_KEY"]
-
 
 if not openai_api_key:
     st.error("OpenAI API key not found. Please set the 'OPENAI_API_KEY' environment variable.")
@@ -32,14 +31,14 @@ else:
                     raw_text += text
 
             text_splitter = CharacterTextSplitter(        
-                separator = "\n",
-                chunk_size = 1000,
-                chunk_overlap  = 200,
-                length_function = len,
+                separator="\n",
+                chunk_size=1000,
+                chunk_overlap=200,
+                length_function=len,
             )
             texts = text_splitter.split_text(raw_text)
 
-            embeddings = OpenAIEmbeddings(api_key=openai_api_key)
+            embeddings = OpenAIEmbeddings()
 
             docsearch = FAISS.from_texts(texts, embeddings)
 
