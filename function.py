@@ -10,7 +10,8 @@ import os
 import streamlit as st
 
 st.title(""" Find any information you're looking for in your PDF""")
-openai_api_key = os.environ.get("OPENAI_API_KEY")
+openai_api_key = os.environ["OPENAI_API_KEY"]
+
 
 if not openai_api_key:
     st.error("OpenAI API key not found. Please set the 'OPENAI_API_KEY' environment variable.")
